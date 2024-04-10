@@ -82,8 +82,12 @@ const naoButton = document.getElementById('nao');
 const simButton = document.getElementById('sim');
 
 naoButton.addEventListener('mouseover', function(e) {
-  this.style.top = (Math.random() * window.innerHeight) + 'px';
-  this.style.left = (Math.random() * window.innerWidth) + 'px';
+  // Calcula nova posição dentro da janela visível, subtraindo a largura e altura do botão para evitar que ele saia da tela
+  const novoX = Math.random() * (window.innerWidth - this.offsetWidth);
+  const novoY = Math.random() * (window.innerHeight - this.offsetHeight);
+  
+  this.style.left = novoX + 'px';
+  this.style.top = novoY + 'px';
 });
 
 simButton.addEventListener('click', function() {
@@ -115,5 +119,6 @@ function animateElement(element) {
   }, 3000 + Math.random() * 3000); // Elementos desaparecem após um tempo
 }
 </script>
+
 </body>
 </html>
