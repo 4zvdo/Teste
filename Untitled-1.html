@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Eu te amo infinitamente, volta pra mim?</title>
+<link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+<style>
+  body {
+    font-family: 'Lobster', cursive;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    background-image: url('https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExd3QwM3Z4Y2F4MXpsdjM1emFwZGE4cmZ6dmlyZ3NvMjY5MXRmd3l4MSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/HSCZMUa1ao17h7l5mg/giphy.gif');
+    background-size: cover;
+    background-position: center;
+    color: #000;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  h2 {
+    color: #000;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  }
+  #sim, #nao {
+    border: none;
+    padding: 10px 20px;
+    margin: 5px;
+    border-radius: 5px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    outline: none;
+  }
+  #sim {
+    background-color: #28a745; /* Botão verde */
+    color: white;
+  }
+  #sim:hover {
+    box-shadow: 0 0 15px #28a745;
+  }
+  #nao {
+    background-color: #dc3545; /* Botão vermelho */
+    color: white;
+    position: relative; /* Mudança para relative para manter na página */
+  }
+  #nao:hover {
+    box-shadow: 0 0 15px #dc3545;
+  }
+  .coracao, .estrela {
+    position: absolute;
+    font-size: 30px;
+    transition: all 2s ease;
+    user-select: none;
+  }
+  .coracao {
+    color: #ff4757; /* Cor dos corações */
+    opacity: 0;
+  }
+  .estrela {
+    color: #f4d03f; /* Cor das estrelas */
+    opacity: 0;
+  }
+</style>
+</head>
+<body>
+<div>
+  <h2>Eu te amo infinitamente, volta pra mim?</h2>
+  <button id="sim">Sim</button>
+  <button id="nao">Não</button>
+</div>
+
+<script>
+const naoButton = document.getElementById('nao');
+const simButton = document.getElementById('sim');
+
+naoButton.addEventListener('mouseover', function(e) {
+  this.style.top = (Math.random() * window.innerHeight) + 'px';
+  this.style.left = (Math.random() * window.innerWidth) + 'px';
+});
+
+simButton.addEventListener('click', function() {
+  for (let i = 0; i < 50; i++) {
+    createFallingElement('coracao', '♥');
+    createFallingElement('estrela', '★');
+  }
+});
+
+function createFallingElement(className, character) {
+  const element = document.createElement('div');
+  element.className = className;
+  element.innerHTML = character;
+  element.style.left = Math.random() * window.innerWidth + 'px';
+  element.style.top = Math.random() * window.innerHeight + 'px';
+  document.body.appendChild(element);
+  animateElement(element);
+}
+
+function animateElement(element) {
+  setTimeout(() => {
+    element.style.opacity = 1;
+    element.style.transform = 'translateY(' + window.innerHeight + 'px) scale(' + (Math.random() + 0.5) + ')';
+  }, Math.random() * 300);
+
+  setTimeout(() => {
+    element.style.opacity = 0;
+    document.body.removeChild(element);
+  }, 3000 + Math.random() * 3000); // Elementos desaparecem após um tempo
+}
+</script>
+</body>
+</html>
